@@ -22,15 +22,15 @@ PostgreSQL
 
 ## Estrutura do Projeto
 
-![Estrutura](pictures/project-structure.png)
+![Estrutura](imagens/project-structure.png)
 
 ## Execução do Pipeline
 
-![Pipeline](pictures/pipeline-execution.png)
+![Pipeline](imagens/pipeline-execution.png)
 
 ## Dados Carregados
 
-![PostgreSQL](pictures/postgres-data.png)
+![PostgreSQL](imagens/postgres-data.png)
 
 ## Tecnologias
 
