@@ -1,0 +1,10 @@
+venv/
+.env
+
+__pycache__/
+*.pyc
+
+data/bronze/*.json
+data/silver/*.csv
+
+logs/*.log
