@@ -8,3 +8,7 @@ data/bronze/*.json
 data/silver/*.csv
 
 logs/*.log
+
+.vscode/
+.idea/
+.cache/
