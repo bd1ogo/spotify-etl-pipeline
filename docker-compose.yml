@@ -16,5 +16,21 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  etl:
+    build: .
+    container_name: spotify_etl
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: spotify_metabase
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
 volumes:
   postgres_data:

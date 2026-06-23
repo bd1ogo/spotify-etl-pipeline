@@ -1,4 +1,4 @@
-ARTIST_NAME = "The Beatles"
+ARTISTS = ["The Beatles", "Jorge Ben Jor", "Gilberto Gil", "Zeca Pagodinho", "Led Zeppelin"]
 
 SEARCH_LIMIT = 10
 

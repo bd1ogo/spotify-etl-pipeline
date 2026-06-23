@@ -11,7 +11,7 @@ from config import (
 )
 
 from constants import (
-    ARTIST_NAME,
+    ARTISTS,
     SEARCH_LIMIT,
     BRONZE_PATH
 )
@@ -24,11 +24,20 @@ def extract_data():
             auth_manager=SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET)
         )
 
-        resultado = sp.search(
-            q=ARTIST_NAME,
-            type="track",
-            limit=SEARCH_LIMIT
-        )
+        resultado_final = {
+            "tracks": {"items": []}
+        }
+        for artist in ARTISTS:
+            logger.info(f"Buscando músicas do {artist}")
+
+            resultado = sp.search(
+                q=f"artist:{artist}", 
+                type="track",
+                limit=SEARCH_LIMIT
+            )
+            resultado_final["tracks"]["items"].extend(
+                resultado["tracks"]["items"]
+            )
 
         os.makedirs(os.path.dirname(BRONZE_PATH), exist_ok=True)
 
@@ -37,10 +46,11 @@ def extract_data():
             "w",
             encoding="utf-8"
         ) as arquivo:
-            json.dump(resultado, arquivo, ensure_ascii=False, indent=4)
+            json.dump(resultado_final, arquivo, ensure_ascii=False, indent=4)
         
         logger.info("JSON salvo na camada Bronze")
-        return resultado
+
+        return resultado_final
     except Exception as e:
 
         logger.error(

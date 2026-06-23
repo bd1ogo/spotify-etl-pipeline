@@ -42,6 +42,9 @@ def transform_data(dados):
             SILVER_PATH,
             index=False
         )
+        logger.info("CSV salvo na camada Silver")
+
+        logger.info(f'Total de registros transformados: {len(df)}')
         return df
     except Exception as e:
         
