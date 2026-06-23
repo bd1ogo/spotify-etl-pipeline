@@ -57,7 +57,7 @@ def load_data(df):
             )
         logger.info(f"{len(df_existente)} registro já existente no banco.")
         
-        novos_registros = df[~df["track_id"].issin(df_existente["track_id"])]
+        novos_registros = df[~df["track_id"].isin(df_existente["track_id"])]
 
         logger.info(f"{len(novos_registros)} registros novos identificados.")
 
@@ -73,7 +73,7 @@ def load_data(df):
             logger.info("Nenhum registro novo encontrado.")
         
         logger.info("Dados carregados sucesso!")
-        
+
     except Exception as e:
         logger.error(f"Erro ao carregar dados: {e}")
         raise

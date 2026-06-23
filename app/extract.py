@@ -28,16 +28,22 @@ def extract_data():
             "tracks": {"items": []}
         }
         for artist in ARTISTS:
-            logger.info(f"Buscando músicas do {artist}")
+            logger.info(f"Buscando músicas de {artist}")
 
             resultado = sp.search(
-                q=f"artist:{artist}", 
+                q=f"artist:{artist}",
                 type="track",
                 limit=SEARCH_LIMIT
             )
-            resultado_final["tracks"]["items"].extend(
-                resultado["tracks"]["items"]
-            )
+
+            contador = 0
+
+            for track in resultado["tracks"]["items"]:
+                artista_principal = track["artists"][0]["name"]
+
+                if artista_principal.lower() == artist.lower():
+                    resultado_final["tracks"]["items"].append(track)
+                    contador += 1
 
         os.makedirs(os.path.dirname(BRONZE_PATH), exist_ok=True)
 
